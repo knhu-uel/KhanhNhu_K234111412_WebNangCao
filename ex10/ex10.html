@@ -1,0 +1,61 @@
+<div class="container">
+  <div class="card">
+    <h2 class="title">
+      Chuyển đổi Dương lịch thành Âm lịch
+    </h2>
+
+    <div class="input-section">
+      <div class="input-group">
+        <label class="input-label">Ngày</label>
+        <select [(ngModel)]="selectedDay" class="select-box">
+          <option *ngFor="let day of days" [value]="day">{{ day }}</option>
+        </select>
+
+        <label class="input-label">Tháng</label>
+        <select [(ngModel)]="selectedMonth" class="select-box">
+          <option *ngFor="let month of months" [value]="month">{{ month }}</option>
+        </select>
+
+        <label class="input-label">Năm</label>
+        <select [(ngModel)]="selectedYear" class="select-box">
+          <option *ngFor="let year of years" [value]="year">{{ year }}</option>
+        </select>
+
+        <button (click)="convertToLunar()" class="convert-btn">
+          Chuyển đổi
+        </button>
+      </div>
+    </div>
+
+    <div *ngIf="lunarResult" class="result-section">
+      <h3 class="result-title">Âm Lịch</h3>
+      
+      <table class="result-table">
+        <tr>
+          <td class="label-cell">Thứ trong tuần</td>
+          <td class="value-cell">{{ lunarResult.dayOfWeek }}</td>
+        </tr>
+        <tr>
+          <td class="label-cell">Ngày tháng năm âm</td>
+          <td class="value-cell">{{ lunarResult.lunarDate }}</td>
+        </tr>
+        <tr>
+          <td class="label-cell">Năm</td>
+          <td class="value-cell">{{ lunarResult.yearName }}</td>
+        </tr>
+        <tr>
+          <td class="label-cell">Tháng</td>
+          <td class="value-cell">{{ lunarResult.monthName }}</td>
+        </tr>
+        <tr>
+          <td class="label-cell">Ngày</td>
+          <td class="value-cell">{{ lunarResult.dayName }}</td>
+        </tr>
+      </table>
+    </div>
+    <div class="footer">
+      <p class="footer-text">© Developed with Nguyễn Hoàng Khánh Như - K234111412</p>
+      <p class="footer-subtext">Chuyển đổi Dương lịch - Âm lịch chính xác và nhanh chóng</p>
+    </div>
+  </div>
+</div>
