@@ -1,0 +1,29 @@
+<h2>Customer List - Exercise 18</h2>
+<div *ngIf="customerGroups.length === 0">
+  <p>Loading customers data...</p>
+</div>
+<div *ngFor="let group of customerGroups">
+  <table border="1">
+    <tr>
+      <td colspan="5">{{group.CustomerTypeId}} - {{group.CustomterTypeName}}</td>
+    </tr>
+    <tr>
+      <td>Id</td>
+      <td>Name</td>
+      <td>Email</td>
+      <td>Age</td>
+      <td>#</td>
+    </tr>
+    <tr *ngFor="let customer of group.Customers">
+      <td>{{customer.Id}}</td>
+      <td>{{customer.Name}}</td>
+      <td>{{customer.Email}}</td>
+      <td>{{customer.Age}}</td>
+      <td>
+        <img [src]="customer.Image" alt="{{customer.Name}}" style="width: 120px; height: 120px; object-fit: cover;">
+      </td>
+    </tr>
+  </table>
+  <br>
+</div>
+<p><strong>Nguyễn Hoàng Khánh Như - K234111412</strong></p>
