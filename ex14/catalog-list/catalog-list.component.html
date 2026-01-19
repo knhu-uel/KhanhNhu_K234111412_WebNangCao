@@ -1,0 +1,34 @@
+<div *ngFor="let category of categories">
+  <table border="1">
+    <tr>
+      <td>Ma Danh Muc</td>
+      <td>Ten Danh Muc</td>
+    </tr>
+    <tr>
+      <td>{{category.Cateid}}</td>
+      <td>{{category.CateName}}</td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        <table border="1">
+          <tr>
+            <td>Ma San Pham</td>
+            <td>Ten San Pham</td>
+            <td>Gia San Pham</td>
+            <td>Picture</td>
+          </tr>
+          <tr *ngFor="let product of category.Products">
+            <td>{{product.ProductId}}</td>
+            <td>{{product.ProductName}}</td>
+            <td>{{product.Price}}</td>
+            <td>
+              <img [src]="product.Image" alt="{{product.ProductName}}" style="width: 80px; height: 80px;">
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+  <br>
+</div>
+<p><strong>Nguyễn Hoàng Khánh Như - K234111412</strong></p>

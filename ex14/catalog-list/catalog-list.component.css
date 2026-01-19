@@ -1,0 +1,14 @@
+/* Add your styles here */
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+table td {
+  padding: 8px;
+}
+
+img {
+  object-fit: contain;
+}
