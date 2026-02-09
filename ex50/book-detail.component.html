@@ -1,0 +1,76 @@
+<div class="container">
+  <h2>CHI TIẾT THÔNG TIN SÁCH</h2>
+  
+  <div *ngIf="loading" class="loading">Đang tải dữ liệu...</div>
+
+  <div *ngIf="!loading && book" class="book-detail">
+    <div class="detail-row">
+      <label>Mã sách:</label>
+      <span>{{ book.id }}</span>
+    </div>
+    
+    <div class="detail-row">
+      <label>Tên sách:</label>
+      <span>{{ book.tenSach }}</span>
+    </div>
+    
+    <div class="detail-row">
+      <label>Tác giả:</label>
+      <span>{{ book.tacgia }}</span>
+    </div>
+    
+    <div class="detail-row">
+      <label>Giá bán:</label>
+      <span>{{ book.giaban | number:'1.2-2' }} VNĐ</span>
+    </div>
+    
+    <div class="detail-row">
+      <label>Mô tả:</label>
+      <span>{{ book.mota }}</span>
+    </div>
+    
+    <div class="detail-row">
+      <label>Ảnh bìa:</label>
+      <span>{{ book.anhbia }}</span>
+    </div>
+    
+    <div class="detail-row" *ngIf="book.anhbia">
+      <label>Hình ảnh:</label>
+      <img [src]="book.anhbia" [alt]="book.tenSach" class="book-image" />
+    </div>
+    
+    <div class="detail-row">
+      <label>Ngày xuất bản:</label>
+      <span>{{ book.ngayXuatBan }}</span>
+    </div>
+    
+    <div class="detail-row">
+      <label>Số trang:</label>
+      <span>{{ book.soTrang }}</span>
+    </div>
+    
+    <div class="detail-row">
+      <label>Số lượng tồn:</label>
+      <span>{{ book.soluongton }}</span>
+    </div>
+    
+    <div class="detail-row">
+      <label>Mã chủ đề:</label>
+      <span>{{ book.maCd }}</span>
+    </div>
+    
+    <div class="detail-row">
+      <label>Mã nhà xuất bản:</label>
+      <span>{{ book.maNxb }}</span>
+    </div>
+    
+    <div class="actions">
+      <button class="btn btn-secondary" (click)="goBack()">Quay lại</button>
+      <button class="btn btn-primary" (click)="editBook()">Chỉnh sửa</button>
+    </div>
+  </div>
+
+  <div *ngIf="!loading && !book" class="error">
+    Không tìm thấy thông tin sách!
+  </div>
+</div>

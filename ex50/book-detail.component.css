@@ -1,0 +1,98 @@
+.container {
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+h2 {
+  color: #333;
+  margin-bottom: 30px;
+  font-size: 24px;
+}
+
+.loading {
+  text-align: center;
+  padding: 40px;
+  font-size: 18px;
+  color: #666;
+}
+
+.error {
+  text-align: center;
+  padding: 40px;
+  font-size: 18px;
+  color: #dc3545;
+}
+
+.book-detail {
+  background: white;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.detail-row {
+  display: flex;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #e9ecef;
+  padding-bottom: 15px;
+}
+
+.detail-row:last-of-type {
+  border-bottom: none;
+}
+
+.detail-row label {
+  font-weight: 600;
+  color: #495057;
+  min-width: 180px;
+  font-size: 14px;
+}
+
+.detail-row span {
+  flex: 1;
+  color: #212529;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.book-image {
+  max-width: 200px;
+  max-height: 300px;
+  border: 1px solid #dee2e6;
+  border-radius: 4px;
+}
+
+.actions {
+  margin-top: 30px;
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
+.btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+}
+
+.btn-secondary {
+  background-color: #6c757d;
+  color: white;
+}
+
+.btn-secondary:hover {
+  background-color: #545b62;
+}

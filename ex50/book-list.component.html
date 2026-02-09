@@ -1,0 +1,50 @@
+<div class="container">
+  <h2>QUẢN LÝ THÔNG TIN SÁCH</h2>
+  
+  <div class="actions">
+    <button class="btn btn-primary" (click)="createNew()">+ Create New</button>
+  </div>
+
+  <div *ngIf="loading" class="loading">Đang tải dữ liệu...</div>
+
+  <table class="table" *ngIf="!loading">
+    <thead>
+      <tr>
+        <th>Giáo trình<br>Tín học<br>Cơ bản</th>
+        <th>Tensach</th>
+        <th>Giaban</th>
+        <th>Mota</th>
+        <th>Anhbia</th>
+        <th>NgayXuatBan</th>
+        <th>Soluongton</th>
+        <th>MaCb</th>
+        <th>MaNXB</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let book of books">
+        <td>
+          <div class="book-title">{{ book.tenSach }}</div>
+          <div class="book-author">{{ book.tacgia }}</div>
+        </td>
+        <td>{{ book.tenSach }}</td>
+        <td>{{ book.giaban | number:'1.2-2' }}</td>
+        <td class="description">{{ book.mota }}</td>
+        <td>{{ book.anhbia }}</td>
+        <td>{{ book.ngayXuatBan }}<br>12:00:00 SA</td>
+        <td>{{ book.soTrang }}</td>
+        <td>{{ book.soluongton }}</td>
+        <td>{{ book.maCd }}</td>
+        <td>{{ book.maNxb }}</td>
+        <td>
+          <div class="action-buttons">
+            <button class="btn-link" (click)="editBook(book.id)">Edit</button> |
+            <button class="btn-link" (click)="viewDetails(book.id)">Details</button> |
+            <button class="btn-link" (click)="deleteBook(book.id, book.tenSach)">Delete</button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
