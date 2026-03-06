@@ -1,0 +1,114 @@
+<div class="admin-detail-page">
+  <!-- Header -->
+  <div class="page-header">
+    <button class="btn btn-back" (click)="goBack()">← Danh sách</button>
+    <h1 *ngIf="mode === 'view'">Chi tiết Fashion</h1>
+    <h1 *ngIf="mode === 'edit'">Chỉnh sửa Fashion</h1>
+    <h1 *ngIf="mode === 'create'">Thêm Fashion mới</h1>
+    <span></span>
+  </div>
+
+  <!-- Loading -->
+  <div class="loading" *ngIf="loading">
+    <div class="spinner"></div>
+    <p>Đang tải...</p>
+  </div>
+
+  <!-- Error -->
+  <div class="alert-error" *ngIf="errorMessage">⚠️ {{ errorMessage }}</div>
+
+  <!-- VIEW MODE -->
+  <div class="view-container" *ngIf="!loading && mode === 'view'">
+    <div class="view-layout">
+      <div class="view-thumb">
+        <img
+          [src]="fashion.thumbnail || 'https://via.placeholder.com/400x500?text=No+Image'"
+          [alt]="fashion.fashion_title"
+        />
+      </div>
+      <div class="view-info">
+        <span class="style-tag">{{ fashion.fashion_style }}</span>
+        <h2>{{ fashion.fashion_title }}</h2>
+        <p class="date-info">📅 Ngày tạo: {{ formatDate(fashion.creation_date) }}</p>
+        <div class="fashion-details-html" [innerHTML]="safeDetails"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CREATE / EDIT FORM -->
+  <div class="form-container" *ngIf="!loading && (mode === 'create' || mode === 'edit')">
+
+    <div class="form-group">
+      <label>Tiêu đề <span class="required">*</span></label>
+      <input type="text" [(ngModel)]="fashion.fashion_title" placeholder="Nhập tiêu đề fashion..." />
+    </div>
+
+    <div class="form-group">
+      <label>Style <span class="required">*</span></label>
+      <div class="style-row">
+        <select [(ngModel)]="fashion.fashion_style">
+          <option value="">-- Chọn Style --</option>
+          <option *ngFor="let s of styles" [value]="s">{{ s }}</option>
+        </select>
+        <input
+          type="text"
+          [(ngModel)]="fashion.fashion_style"
+          placeholder="Hoặc nhập Style mới..."
+        />
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Thumbnail URL</label>
+      <input
+        type="text"
+        [(ngModel)]="fashion.thumbnail"
+        placeholder="https://example.com/image.jpg"
+      />
+      <div class="thumb-preview" *ngIf="fashion.thumbnail">
+        <img [src]="fashion.thumbnail" alt="preview" />
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Chi tiết Fashion <span class="wysiwyg-hint">(WYSIWYG Html Editor)</span></label>
+
+      <!-- WYSIWYG Toolbar -->
+      <div class="wysiwyg-toolbar">
+        <button type="button" (click)="insertHtml('<b>Bold text</b>')"><b>B</b></button>
+        <button type="button" (click)="insertHtml('<i>Italic text</i>')"><i>I</i></button>
+        <button type="button" (click)="insertHtml('<u>Underline</u>')"><u>U</u></button>
+        <button type="button" (click)="insertHtml('<h3>Heading 3</h3>')">H3</button>
+        <button type="button" (click)="insertHtml('<h4>Heading 4</h4>')">H4</button>
+        <button type="button" (click)="insertHtml('<p>Đoạn văn bản...</p>')">¶ P</button>
+        <button type="button" (click)="insertHtml('<ul>\n  <li>Mục 1</li>\n  <li>Mục 2</li>\n</ul>')">☰ List</button>
+        <button type="button" (click)="insertHtml('<ol>\n  <li>Mục 1</li>\n  <li>Mục 2</li>\n</ol>')">1. OL</button>
+        <button type="button" (click)="insertHtml('<br/>')">BR</button>
+        <button type="button" (click)="insertHtml('<img src=&quot;URL_ẢNH&quot; style=&quot;max-width:100%&quot; />')">🖼 IMG</button>
+        <button type="button" (click)="insertHtml('<a href=&quot;#&quot;>Link text</a>')">🔗 A</button>
+        <button type="button" (click)="insertHtml('<blockquote>Trích dẫn...</blockquote>')">❝ Quote</button>
+        <button type="button" class="btn-clear-html" (click)="fashion.fashion_details = ''">✕ Xóa</button>
+      </div>
+
+      <textarea
+        [(ngModel)]="fashion.fashion_details"
+        rows="12"
+        placeholder="Nhập nội dung HTML cho fashion details..."
+      ></textarea>
+
+      <div class="preview-label">🔍 Preview:</div>
+      <div class="html-preview" [innerHTML]="fashion.fashion_details"></div>
+    </div>
+
+    <div class="form-actions">
+      <button class="btn btn-cancel" (click)="goBack()">Hủy</button>
+      <button class="btn btn-save" (click)="save()" [disabled]="saving">
+        <span *ngIf="!saving">✓ Lưu</span>
+        <span *ngIf="saving">Đang lưu...</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Credit -->
+  <div class="credit">Nguyễn Hoàng Khánh Như &ndash; K234111412</div>
+</div>

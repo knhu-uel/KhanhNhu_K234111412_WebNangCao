@@ -1,0 +1,73 @@
+<div class="client-page">
+  <!-- Top bar -->
+  <div class="topbar">
+    <div class="search-box">
+      <input
+        type="text"
+        [(ngModel)]="searchStyle"
+        placeholder="Tìm kiếm theo Style..."
+        (keyup.enter)="onSearch()"
+      />
+      <button class="btn btn-search" (click)="onSearch()">SEARCH</button>
+    </div>
+    <div class="dropdown-filter">
+      <select [(ngModel)]="selectedStyle" (change)="onDropdownChange()">
+        <option value="">-- Chọn Style --</option>
+        <option *ngFor="let s of styles" [value]="s">{{ s }}</option>
+      </select>
+      <button class="btn btn-clear" *ngIf="selectedStyle || searchStyle" (click)="clearFilter()">✕</button>
+    </div>
+  </div>
+
+  <!-- Site title -->
+  <div class="site-title">
+    <h1>FASHION MAGAZINE</h1>
+    <p class="tagline">Phong cách &bull; Xu hướng &bull; Thời trang</p>
+  </div>
+
+  <!-- Error -->
+  <div class="alert-error" *ngIf="errorMessage">⚠️ {{ errorMessage }}</div>
+
+  <!-- Loading -->
+  <div class="loading" *ngIf="loading">
+    <div class="spinner"></div>
+    <p>Đang tải dữ liệu...</p>
+  </div>
+
+  <!-- Content: grouped by style -->
+  <div *ngIf="!loading">
+    <div *ngIf="groupedFashions.length === 0" class="empty-state">
+      <p>Không tìm thấy fashion nào.</p>
+    </div>
+
+    <div class="style-section" *ngFor="let group of groupedFashions">
+      <div class="section-title">
+        <span>{{ group.style | uppercase }}</span>
+      </div>
+
+      <div class="fashion-grid">
+        <div
+          class="fashion-card"
+          *ngFor="let f of group.items"
+          (click)="viewDetail(f._id!)"
+        >
+          <div class="card-thumb">
+            <img
+              [src]="f.thumbnail || 'https://via.placeholder.com/300x380?text=No+Image'"
+              [alt]="f.fashion_title"
+            />
+            <div class="card-overlay">
+              <span class="overlay-icon">👁</span>
+            </div>
+          </div>
+          <div class="card-body">
+            <p class="card-title">{{ f.fashion_title }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Credit -->
+  <div class="credit">Nguyễn Hoàng Khánh Như &ndash; K234111412</div>
+</div>

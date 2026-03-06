@@ -1,0 +1,43 @@
+<div class="client-detail-page">
+  <!-- Back button -->
+  <div class="back-bar">
+    <button class="btn-back" (click)="goBack()">← Quay lại</button>
+  </div>
+
+  <!-- Loading -->
+  <div class="loading" *ngIf="loading">
+    <div class="spinner"></div>
+    <p>Đang tải...</p>
+  </div>
+
+  <!-- Error -->
+  <div class="alert-error" *ngIf="errorMessage">⚠️ {{ errorMessage }}</div>
+
+  <!-- Detail Content -->
+  <div class="detail-content" *ngIf="!loading && !errorMessage">
+    <!-- Style breadcrumb -->
+    <div class="breadcrumb">
+      <span class="style-link" (click)="goBack()">Fashion</span>
+      <span class="sep">›</span>
+      <span class="style-name">{{ fashion.fashion_style }}</span>
+    </div>
+
+    <!-- Article header -->
+    <div class="article-header">
+      <span class="style-badge">{{ fashion.fashion_style }}</span>
+      <h1 class="article-title">{{ fashion.fashion_title }}</h1>
+      <p class="article-date">{{ formatDate(fashion.creation_date) }}</p>
+    </div>
+
+    <!-- Hero thumbnail -->
+    <div class="hero-image" *ngIf="fashion.thumbnail">
+      <img [src]="fashion.thumbnail" [alt]="fashion.fashion_title" />
+    </div>
+
+    <!-- Article body (WYSIWYG content) -->
+    <div class="article-body" [innerHTML]="safeDetails"></div>
+  </div>
+
+  <!-- Credit -->
+  <div class="credit">Nguyễn Hoàng Khánh Như &ndash; K234111412</div>
+</div>
