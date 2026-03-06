@@ -1,0 +1,74 @@
+<div class="cart-page">
+  <div class="cart-container">
+    <h2 class="cart-title">Shopping cart</h2>
+
+    <!-- Message -->
+    <div *ngIf="message" class="msg-panel" [class.success]="msgType==='success'" [class.error]="msgType==='error'">
+      {{ message }}
+    </div>
+
+    <!-- Empty state -->
+    <div *ngIf="cart.length === 0" class="empty-cart">
+      <div class="empty-icon">🛒</div>
+      <p>Giỏ hàng trống</p>
+      <button class="btn-continue" (click)="continueShopping()">← Tiếp tục mua hàng</button>
+    </div>
+
+    <!-- Cart Table -->
+    <table *ngIf="cart.length > 0" class="cart-table">
+      <thead>
+        <tr>
+          <th>Remove</th>
+          <th>SKU</th>
+          <th>Image</th>
+          <th>Product(s)</th>
+          <th>Price</th>
+          <th>Qty.</th>
+          <th>Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of cart" [class.selected]="isSelected(item.productId)">
+          <!-- Remove checkbox -->
+          <td class="td-check">
+            <input
+              type="checkbox"
+              [checked]="isSelected(item.productId)"
+              (change)="toggleSelect(item.productId)"
+            />
+          </td>
+          <!-- SKU -->
+          <td class="td-sku">{{ item.productId.slice(-4).toUpperCase() }}</td>
+          <!-- Image -->
+          <td class="td-img">
+            <img [src]="'assets/ex63/' + item.image.split('/').pop()" [alt]="item.name" />
+          </td>
+          <!-- Name -->
+          <td class="td-name"><strong>{{ item.name }}</strong></td>
+          <!-- Price -->
+          <td class="td-price">{{ formatPrice(item.price) }}</td>
+          <!-- Qty -->
+          <td class="td-qty">
+            <input
+              type="number"
+              [(ngModel)]="item.quantity"
+              min="1"
+              max="99"
+              class="qty-input"
+            />
+          </td>
+          <!-- Total -->
+          <td class="td-total">{{ itemTotal(item) }}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Actions -->
+    <div *ngIf="cart.length > 0" class="cart-actions">
+      <button class="btn-update" (click)="updateCart()">Update shopping cart</button>
+      <button class="btn-continue" (click)="continueShopping()">Continue shopping</button>
+    </div>
+  </div>
+
+  <div class="credit">Nguyễn Hoàng Khánh Như – K234111412</div>
+</div>

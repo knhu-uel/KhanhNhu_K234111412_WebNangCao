@@ -1,0 +1,70 @@
+<div class="ex62-page">
+  <div class="ex62-card">
+    <div class="card-header">
+      <div class="header-icon">🗂️</div>
+      <h2>Exercise 62 — Session Programming</h2>
+      <p class="subtitle">Minh họa Session counter với Express-Session</p>
+    </div>
+
+    <div class="card-body">
+      <!-- Explain -->
+      <div class="info-box">
+        <h4>📌 Cách hoạt động</h4>
+        <p>
+          Server dùng <code>express-session</code>. Mỗi lần gọi
+          <code>GET /contact</code>, server đọc <code>req.session.visited</code>,
+          tăng lên 1 và trả về kết quả. Reload trang vẫn giữ giá trị vì Session
+          được lưu phía server, gắn với Session ID trong cookie.
+        </p>
+        <div class="code-snippet">
+          <pre>app.get("/contact", cors(), (req, res) =&gt; &#123;
+  if (req.session.visited != null) &#123;
+    req.session.visited++;
+    res.send("You visited this page "
+      + req.session.visited + " times");
+  &#125; else &#123;
+    req.session.visited = 1;
+    res.send("Welcome to this page for the first time!");
+  &#125;
+&#125;);</pre>
+        </div>
+      </div>
+
+      <!-- Visit button -->
+      <button
+        class="btn-visit"
+        (click)="visit()"
+        [disabled]="loading"
+        [class.loading]="loading"
+      >
+        <span *ngIf="!loading">📨 Gọi GET /contact</span>
+        <span *ngIf="loading">⏳ Đang gọi API...</span>
+      </button>
+
+      <!-- Current result -->
+      <div *ngIf="response" class="result-panel" [class.first]="isFirstVisit">
+        <div class="result-label">Phản hồi từ server:</div>
+        <div class="result-text">{{ response }}</div>
+      </div>
+
+      <!-- Visit counter -->
+      <div *ngIf="visitCount > 0" class="counter-display">
+        <div class="counter-number">{{ visitCount }}</div>
+        <div class="counter-label">Lần truy cập trong Session này</div>
+      </div>
+
+      <!-- History log -->
+      <div *ngIf="history.length > 0" class="history-log">
+        <div class="history-title">📜 Lịch sử gọi API</div>
+        <div *ngFor="let h of history; let i = index" class="history-item">
+          <span class="history-index">#{{ history.length - i }}</span>
+          <span class="history-text">{{ h }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="credit">
+    Nguyễn Hoàng Khánh Như – K234111412
+  </div>
+</div>

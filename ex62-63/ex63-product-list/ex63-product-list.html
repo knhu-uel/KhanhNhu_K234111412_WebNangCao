@@ -1,0 +1,37 @@
+<div class="shop-page">
+  <!-- Top bar -->
+  <div class="topbar">
+    <h1 class="shop-title">💍 Diamond Ring Collection</h1>
+    <button class="btn-cart" (click)="goToCart()">
+      🛒 Shopping Cart
+      <span *ngIf="cartCount > 0" class="cart-badge">{{ cartCount }}</span>
+    </button>
+  </div>
+
+  <!-- Product Grid -->
+  <div class="product-grid">
+    <div *ngFor="let p of products" class="product-card" [class.added]="addedId === p._id">
+      <div class="product-img-wrap">
+        <img [src]="'assets/ex63/' + p.image.split('/').pop()" [alt]="p.name" class="product-img" />
+        <div *ngIf="addedId === p._id" class="added-overlay">✅ Added!</div>
+      </div>
+
+      <div class="product-info">
+        <div class="product-name">{{ p.name }}</div>
+        <div class="stars">☆ ☆ ☆ ☆ ☆</div>
+        <div class="product-price">{{ formatPrice(p.price) }}</div>
+      </div>
+
+      <div class="product-actions">
+        <button class="btn-add" (click)="addToCart(p)" [disabled]="loading">
+          ADD TO CART
+        </button>
+        <button class="btn-icon" title="Wishlist">♡</button>
+        <button class="btn-icon" title="Compare">⊞</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Credit -->
+  <div class="credit">Nguyễn Hoàng Khánh Như – K234111412</div>
+</div>
