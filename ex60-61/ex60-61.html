@@ -1,0 +1,179 @@
+<div class="cookie-page">
+
+  <!-- Header -->
+  <div class="page-header">
+    <div class="header-icon">🍪</div>
+    <div class="header-text">
+      <h1>Exercise 60 &ndash; Cookies Programming</h1>
+      <p>Minh hoạ cookie-parser: khởi tạo, thêm, đọc, xóa Cookies</p>
+    </div>
+  </div>
+
+  <!-- Steps Guide -->
+  <div class="steps-bar">
+    <div class="step">
+      <span class="step-num">Step 1-2</span>
+      <span>Cài cookie-parser, khởi tạo middleware</span>
+    </div>
+    <div class="step-arrow">→</div>
+    <div class="step">
+      <span class="step-num">Step 3</span>
+      <span>Tạo Cookies</span>
+    </div>
+    <div class="step-arrow">→</div>
+    <div class="step">
+      <span class="step-num">Step 4-5</span>
+      <span>Đọc Cookies</span>
+    </div>
+    <div class="step-arrow">→</div>
+    <div class="step">
+      <span class="step-num">Step 6</span>
+      <span>Xóa Cookies</span>
+    </div>
+  </div>
+
+  <!-- Action Cards -->
+  <div class="action-grid">
+
+    <!-- Create Cookie -->
+    <div class="action-card create">
+      <div class="card-icon">➕</div>
+      <h3>Tạo Cookies</h3>
+      <p class="card-desc">
+        Tạo 2 cookie đơn (<code>username</code>, <code>password</code>)
+        và 1 cookie JSON Object (<code>account</code>).
+      </p>
+      <div class="code-snippet">
+        <pre>res.cookie("username","tranduythanh")
+res.cookie("password","123456")
+account = &#123;"username":"tranduythanh","password":"123456"&#125;
+res.cookie("account", account)</pre>
+      </div>
+      <button class="btn btn-create" (click)="createCookie()" [disabled]="loading">
+        🚀 Gọi /create-cookie
+      </button>
+    </div>
+
+    <!-- Read Cookie -->
+    <div class="action-card read">
+      <div class="card-icon">👁</div>
+      <h3>Đọc Cookies</h3>
+      <p class="card-desc">
+        Đọc và hiển thị tất cả cookie đã lưu. Nếu <code>account</code>
+        bị xóa thì bỏ qua (null check).
+      </p>
+      <div class="code-snippet">
+        <pre>username = req.cookies.username
+password = req.cookies.password
+account  = req.cookies.account
+if(account != null) &#123; ... &#125;</pre>
+      </div>
+      <button class="btn btn-read" (click)="readCookie()" [disabled]="loading">
+        🔍 Gọi /read-cookie
+      </button>
+    </div>
+
+    <!-- Create Limited Cookie -->
+    <div class="action-card limited">
+      <div class="card-icon">⏱</div>
+      <h3>Cookies có thời hạn</h3>
+      <p class="card-desc">
+        Tạo 2 cookie có thời gian hết hạn bằng <code>expires</code>
+        và <code>maxAge</code>.
+      </p>
+      <div class="code-snippet">
+        <pre>// expires sau 360000 ms
+res.cookie("infor_limit1","...",
+  &#123;expires: new Date(Date.now()+360000)&#125;)
+res.cookie("infor_limit2","...",
+  &#123;maxAge: 360000&#125;)</pre>
+      </div>
+      <button class="btn btn-limited" (click)="createLimitedCookie()" [disabled]="loading">
+        ⏰ Gọi /create-limited-cookie
+      </button>
+    </div>
+
+    <!-- Clear Cookie -->
+    <div class="action-card clear">
+      <div class="card-icon">🗑</div>
+      <h3>Xóa Cookie [account]</h3>
+      <p class="card-desc">
+        Xóa cookie <code>account</code>. Sau đó gọi /read-cookie
+        sẽ không thấy account nữa (null check).
+      </p>
+      <div class="code-snippet">
+        <pre>res.clearCookie("account")
+res.send("[account] Cookie is removed")</pre>
+      </div>
+      <button class="btn btn-clear" (click)="clearCookie()" [disabled]="loading">
+        🗑 Gọi /clear-cookie
+      </button>
+    </div>
+
+  </div>
+
+  <!-- Result Panel -->
+  <div class="result-panel" *ngIf="result || cookiesList || loading">
+    <div class="result-header">
+      <span class="result-label">📋 Kết quả API: <strong>{{ lastAction }}</strong></span>
+      <span class="result-tag" *ngIf="result">TEXT</span>
+      <span class="result-tag json" *ngIf="cookiesList">JSON</span>
+    </div>
+
+    <!-- Loading -->
+    <div class="result-loading" *ngIf="loading">
+      <div class="spinner"></div> Đang gọi API...
+    </div>
+
+    <!-- Text result (HTML from server) -->
+    <div class="result-text" *ngIf="result && !loading" [innerHTML]="result"></div>
+
+    <!-- JSON cookies table -->
+    <div class="result-json" *ngIf="cookiesList && !loading">
+      <table class="cookies-table">
+        <thead>
+          <tr>
+            <th>Cookie Name</th>
+            <th>Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let c of cookiesArray">
+            <td class="cookie-key">{{ c.key }}</td>
+            <td class="cookie-val">
+              <pre>{{ stringify(c.value) }}</pre>
+            </td>
+          </tr>
+          <tr *ngIf="cookiesArray.length === 0">
+            <td colspan="2" class="empty-msg">Không có cookie nào</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Info Panel -->
+  <div class="info-panel">
+    <h4>⚠️ Lưu ý quan trọng</h4>
+    <ul>
+      <li>Cookies được lưu phía <strong>client</strong> (trình duyệt), không phải server.</li>
+      <li>
+        Mỗi trình duyệt lưu cookie riêng: Chrome không chia sẻ với Firefox, Edge.
+      </li>
+      <li>
+        Nếu người dùng tắt lưu cookie ở trình duyệt, code cookie sẽ không hoạt động.
+      </li>
+      <li>
+        Cookie setup: <code>var cookieParser = require('cookie-parser')</code>;
+        <code>app.use(cookieParser())</code>
+      </li>
+      <li>
+        Đọc cookie dùng <code>req.cookies</code>, ghi cookie dùng
+        <code>res.cookie()</code>, xóa cookie dùng <code>res.clearCookie()</code>.
+      </li>
+    </ul>
+  </div>
+
+  <!-- Credit -->
+  <div class="credit">Nguyễn Hoàng Khánh Như &ndash; K234111412</div>
+</div>

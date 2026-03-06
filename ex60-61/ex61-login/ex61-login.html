@@ -1,0 +1,108 @@
+<div class="login-page">
+  <div class="login-card">
+    <!-- Header -->
+    <div class="card-header">
+      <div class="header-icon">🔐</div>
+      <h2>Login System</h2>
+      <p class="subtitle">Exercise 61 — Cookie-based Login</p>
+    </div>
+
+    <!-- Cookie Badge -->
+    <div *ngIf="cookieLoaded" class="cookie-badge">
+      🍪 Cookie đăng nhập đã được tìm thấy — form tự động điền!
+    </div>
+
+    <!-- Form -->
+    <div class="card-body">
+      <div class="form-group">
+        <label for="username">
+          <span class="label-icon">👤</span> User Name
+        </label>
+        <input
+          id="username"
+          type="text"
+          class="form-input"
+          [(ngModel)]="username"
+          placeholder="Nhập tên đăng nhập..."
+          autocomplete="username"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="password">
+          <span class="label-icon">🔑</span> Password
+        </label>
+        <input
+          id="password"
+          type="password"
+          class="form-input"
+          [(ngModel)]="password"
+          placeholder="Nhập mật khẩu..."
+          autocomplete="current-password"
+        />
+      </div>
+
+      <!-- Login Button -->
+      <button
+        class="btn-login"
+        (click)="login()"
+        [disabled]="loading"
+        [class.loading]="loading"
+      >
+        <span *ngIf="!loading">🚀 Login</span>
+        <span *ngIf="loading">⏳ Đang xử lý...</span>
+      </button>
+
+      <!-- Logout Button (chỉ hiển thị khi đã đăng nhập) -->
+      <button
+        *ngIf="loggedInUser"
+        class="btn-logout"
+        (click)="logout()"
+      >
+        🚪 Logout &amp; Xóa Cookie
+      </button>
+    </div>
+
+    <!-- Result Message -->
+    <div
+      *ngIf="message"
+      class="message-panel"
+      [class.success]="loginStatus === 'success'"
+      [class.error]="loginStatus === 'error'"
+    >
+      <span *ngIf="loginStatus === 'success'">✅</span>
+      <span *ngIf="loginStatus === 'error'">❌</span>
+      {{ message }}
+    </div>
+
+    <!-- Logged-in Info Panel -->
+    <div *ngIf="loggedInUser && loginStatus === 'success'" class="user-info">
+      <div class="user-avatar">{{ loggedInUser.charAt(0).toUpperCase() }}</div>
+      <div class="user-details">
+        <div class="user-name">{{ loggedInUser }}</div>
+        <div class="user-status">● Đang hoạt động</div>
+      </div>
+    </div>
+
+    <!-- Demo Users -->
+    <div class="demo-info">
+      <div class="demo-title">🔍 Tài khoản thử nghiệm</div>
+      <table class="demo-table">
+        <thead>
+          <tr><th>Username</th><th>Password</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>tranduythanh</td><td>123456</td></tr>
+          <tr><td>admin</td><td>admin123</td></tr>
+          <tr><td>student</td><td>student123</td></tr>
+          <tr><td>quocviet69</td><td>123456</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Credit -->
+  <div class="credit">
+    Nguyễn Hoàng Khánh Như – K234111412
+  </div>
+</div>

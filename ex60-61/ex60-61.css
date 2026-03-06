@@ -1,0 +1,308 @@
+/* ── Page Layout ─────────────────────────────────── */
+.cookie-page {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 24px 20px 40px;
+  font-family: 'Segoe UI', sans-serif;
+  background: #fafafa;
+  min-height: 100vh;
+}
+
+/* ── Header ────────────────────────────────────────── */
+.page-header {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  background: linear-gradient(135deg, #e65100, #f57c00);
+  color: white;
+  padding: 22px 30px;
+  border-radius: 14px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 18px rgba(230, 81, 0, 0.3);
+}
+.header-icon {
+  font-size: 2.8rem;
+  line-height: 1;
+}
+.header-text h1 {
+  margin: 0 0 5px;
+  font-size: 1.55rem;
+  font-weight: 800;
+  letter-spacing: 0.3px;
+}
+.header-text p {
+  margin: 0;
+  font-size: 0.9rem;
+  opacity: 0.88;
+}
+
+/* ── Steps Bar ──────────────────────────────────────── */
+.steps-bar {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  background: white;
+  border: 1.5px solid #ffe0b2;
+  border-radius: 10px;
+  padding: 12px 20px;
+  margin-bottom: 28px;
+}
+.step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 0.8rem;
+  color: #555;
+}
+.step-num {
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: #e65100;
+  background: #fff3e0;
+  padding: 2px 8px;
+  border-radius: 10px;
+  margin-bottom: 3px;
+}
+.step-arrow {
+  color: #bbb;
+  font-size: 1.1rem;
+  padding: 0 4px;
+}
+
+/* ── Action Grid ─────────────────────────────────────── */
+.action-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 18px;
+  margin-bottom: 28px;
+}
+
+/* ── Action Card ─────────────────────────────────────── */
+.action-card {
+  background: white;
+  border-radius: 12px;
+  padding: 22px 20px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border-top: 4px solid transparent;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.action-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.11);
+}
+.action-card.create  { border-top-color: #2e7d32; }
+.action-card.read    { border-top-color: #1565c0; }
+.action-card.limited { border-top-color: #6a1b9a; }
+.action-card.clear   { border-top-color: #c62828; }
+
+.card-icon {
+  font-size: 1.8rem;
+  line-height: 1;
+}
+.action-card h3 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #1a1a2e;
+}
+.card-desc {
+  font-size: 0.83rem;
+  color: #666;
+  line-height: 1.55;
+  margin: 0;
+}
+.card-desc code {
+  background: #f5f5f5;
+  padding: 1px 5px;
+  border-radius: 3px;
+  font-size: 0.8rem;
+  color: #e65100;
+}
+
+/* ── Code Snippet ─────────────────────────────────────── */
+.code-snippet {
+  background: #1e1e2e;
+  border-radius: 7px;
+  padding: 10px 12px;
+  flex: 1;
+}
+.code-snippet pre {
+  margin: 0;
+  font-size: 0.75rem;
+  color: #cdd6f4;
+  white-space: pre-wrap;
+  word-break: break-all;
+  font-family: 'Courier New', monospace;
+  line-height: 1.55;
+}
+
+/* ── Buttons ─────────────────────────────────────────── */
+.btn {
+  border: none;
+  border-radius: 7px;
+  font-size: 0.88rem;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 10px 14px;
+  transition: opacity 0.2s, transform 0.1s;
+  margin-top: auto;
+}
+.btn:hover   { opacity: 0.87; transform: translateY(-1px); }
+.btn:active  { transform: translateY(0); }
+.btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+.btn-create  { background: #2e7d32; color: white; }
+.btn-read    { background: #1565c0; color: white; }
+.btn-limited { background: #6a1b9a; color: white; }
+.btn-clear   { background: #c62828; color: white; }
+
+/* ── Result Panel ─────────────────────────────────────── */
+.result-panel {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  overflow: hidden;
+  margin-bottom: 24px;
+}
+.result-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #fff8f0;
+  padding: 12px 20px;
+  border-bottom: 1.5px solid #ffe0b2;
+}
+.result-label {
+  font-size: 0.9rem;
+  color: #555;
+  flex: 1;
+}
+.result-label strong {
+  color: #e65100;
+}
+.result-tag {
+  background: #fff3e0;
+  color: #e65100;
+  font-size: 0.72rem;
+  font-weight: 800;
+  padding: 2px 10px;
+  border-radius: 10px;
+  letter-spacing: 0.5px;
+}
+.result-tag.json {
+  background: #e8f5e9;
+  color: #2e7d32;
+}
+
+.result-loading {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 24px 20px;
+  color: #888;
+  font-size: 0.9rem;
+}
+.spinner {
+  width: 22px;
+  height: 22px;
+  border: 3px solid #ffe0b2;
+  border-top-color: #e65100;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  flex-shrink: 0;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.result-text {
+  padding: 20px 24px;
+  font-size: 0.95rem;
+  color: #333;
+  line-height: 1.8;
+}
+
+/* ── Cookies Table ─────────────────────────────────────── */
+.result-json {
+  padding: 16px;
+}
+.cookies-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+.cookies-table th {
+  background: #fff3e0;
+  color: #e65100;
+  font-weight: 700;
+  padding: 10px 16px;
+  text-align: left;
+  border-bottom: 2px solid #ffe0b2;
+}
+.cookies-table td {
+  padding: 10px 16px;
+  border-bottom: 1px solid #f5f5f5;
+  vertical-align: top;
+}
+.cookies-table tr:last-child td { border-bottom: none; }
+.cookies-table tr:hover td { background: #fffbf7; }
+.cookie-key {
+  font-weight: 700;
+  color: #e65100;
+  white-space: nowrap;
+  font-family: 'Courier New', monospace;
+}
+.cookie-val pre {
+  margin: 0;
+  font-family: 'Courier New', monospace;
+  font-size: 0.85rem;
+  color: #333;
+  white-space: pre-wrap;
+}
+.empty-msg {
+  text-align: center;
+  color: #bbb;
+  font-style: italic;
+  padding: 20px !important;
+}
+
+/* ── Info Panel ───────────────────────────────────────── */
+.info-panel {
+  background: #fffde7;
+  border: 1.5px solid #f9a825;
+  border-radius: 10px;
+  padding: 18px 22px;
+  margin-bottom: 28px;
+}
+.info-panel h4 {
+  margin: 0 0 12px;
+  color: #e65100;
+  font-size: 0.95rem;
+}
+.info-panel ul {
+  margin: 0;
+  padding-left: 20px;
+}
+.info-panel li {
+  font-size: 0.85rem;
+  color: #555;
+  line-height: 1.7;
+}
+.info-panel code {
+  background: #fff8e1;
+  padding: 1px 5px;
+  border-radius: 3px;
+  font-size: 0.8rem;
+  color: #e65100;
+}
+
+/* ── Credit ───────────────────────────────────────────── */
+.credit {
+  text-align: center;
+  padding: 16px;
+  font-size: 0.84rem;
+  color: #bdbdbd;
+  border-top: 1px solid #eee;
+  letter-spacing: 0.3px;
+}

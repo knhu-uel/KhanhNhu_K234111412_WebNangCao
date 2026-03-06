@@ -1,0 +1,250 @@
+/* ===== Page Layout ===== */
+.login-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 16px;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* ===== Card ===== */
+.login-card {
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+  width: 100%;
+  max-width: 440px;
+  overflow: hidden;
+}
+
+/* ===== Header ===== */
+.card-header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 32px 24px 24px;
+  text-align: center;
+  color: #fff;
+}
+
+.header-icon {
+  font-size: 2.8rem;
+  margin-bottom: 10px;
+}
+
+.card-header h2 {
+  margin: 0 0 4px;
+  font-size: 1.8rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.card-header .subtitle {
+  margin: 0;
+  font-size: 0.85rem;
+  opacity: 0.85;
+}
+
+/* ===== Cookie Badge ===== */
+.cookie-badge {
+  background: #fff8e1;
+  color: #e65100;
+  border-left: 4px solid #ff9800;
+  padding: 10px 20px;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+/* ===== Form Body ===== */
+.card-body {
+  padding: 28px 28px 20px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #444;
+  margin-bottom: 8px;
+}
+
+.label-icon {
+  margin-right: 4px;
+}
+
+.form-input {
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid #e0e0e0;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  transition: border-color 0.25s, box-shadow 0.25s;
+  box-sizing: border-box;
+  outline: none;
+  background: #fafafa;
+}
+
+.form-input:focus {
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
+  background: #fff;
+}
+
+/* ===== Buttons ===== */
+.btn-login {
+  width: 100%;
+  padding: 13px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: opacity 0.2s, transform 0.1s;
+  letter-spacing: 0.5px;
+}
+
+.btn-login:hover:not(:disabled) {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.btn-login:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.btn-logout {
+  width: 100%;
+  margin-top: 12px;
+  padding: 11px;
+  background: transparent;
+  color: #e53935;
+  border: 2px solid #e53935;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.btn-logout:hover {
+  background: #fce4ec;
+}
+
+/* ===== Message Panel ===== */
+.message-panel {
+  margin: 0 28px 20px;
+  padding: 12px 16px;
+  border-radius: 10px;
+  font-size: 0.88rem;
+  font-weight: 500;
+  line-height: 1.6;
+}
+
+.message-panel.success {
+  background: #e8f5e9;
+  color: #2e7d32;
+  border-left: 4px solid #43a047;
+}
+
+.message-panel.error {
+  background: #ffebee;
+  color: #c62828;
+  border-left: 4px solid #ef5350;
+}
+
+/* ===== User Info Panel ===== */
+.user-info {
+  margin: 0 28px 20px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: #f3f0ff;
+  border-radius: 12px;
+  padding: 14px 18px;
+  border: 1px solid #d1c4e9;
+}
+
+.user-avatar {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.user-name {
+  font-weight: 700;
+  font-size: 1rem;
+  color: #333;
+}
+
+.user-status {
+  font-size: 0.8rem;
+  color: #43a047;
+  font-weight: 500;
+}
+
+/* ===== Demo Info ===== */
+.demo-info {
+  margin: 0 28px 28px;
+  background: #f9f9f9;
+  border: 1px dashed #ccc;
+  border-radius: 10px;
+  padding: 14px 16px;
+}
+
+.demo-title {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #666;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.demo-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.82rem;
+}
+
+.demo-table th {
+  background: #ece9f8;
+  color: #5e35b1;
+  padding: 6px 10px;
+  text-align: left;
+  font-weight: 700;
+}
+
+.demo-table td {
+  padding: 6px 10px;
+  border-bottom: 1px solid #eee;
+  color: #444;
+  font-family: monospace;
+}
+
+.demo-table tr:last-child td {
+  border-bottom: none;
+}
+
+/* ===== Credit ===== */
+.credit {
+  margin-top: 16px;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.8rem;
+  text-align: center;
+}
